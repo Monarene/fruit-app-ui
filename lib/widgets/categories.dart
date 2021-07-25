@@ -33,7 +33,7 @@ class _CategoriesState extends State<Categories> {
   }
 
   _scrollToItem(index) {
-    double position = index * 210;
+    double position = index * 210.0;
 
     _controller.animateTo(position,
         duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
@@ -99,6 +99,7 @@ class _CategoriesState extends State<Categories> {
         scrollDirection: Axis.horizontal,
         itemCount: listItems.length,
         controller: _controller,
+        padding: EdgeInsets.only(right: 40),
         itemBuilder: (BuildContext context, int index) {
           return Container(
             margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
@@ -138,6 +139,15 @@ class _CategoriesState extends State<Categories> {
                         ]),
                       )
                     ],
+                  ),
+                ),
+                Hero(
+                  tag: listItems[index].name,
+                  child: Image(
+                    width: 150,
+                    height: 150,
+                    image:
+                        AssetImage("assets/fruits/" + listItems[index].image),
                   ),
                 )
               ],
