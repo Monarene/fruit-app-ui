@@ -125,10 +125,12 @@ class _CategoriesState extends State<Categories> {
                 ],
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                    padding: EdgeInsets.only(bottom: 30, left: 10, right: 10),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
@@ -163,6 +165,30 @@ class _CategoriesState extends State<Categories> {
                     child: Text(
                       listItems[index].description,
                       style: TextStyle(color: Colors.white, fontSize: 12.0),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (_) => ProductScreen(
+                      //               item: listItems[index],
+                      //             )));
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        color: Colors.black.withOpacity(0.1),
+                      ),
+                      child: Text(
+                        "Add to cart",
+                        style: TextStyle(color: Colors.white, fontSize: 12.0),
+                      ),
                     ),
                   )
                 ],
