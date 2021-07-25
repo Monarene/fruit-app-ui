@@ -23,7 +23,7 @@ class _CategoriesState extends State<Categories> {
 
   _selectCategoryIndex() {
     Timer(Duration(milliseconds: 400), () {
-      double newIndex = _controller.offset / 210;
+      double newIndex = _controller.offset / 260.0;
       if (newIndex.round() != _selectedIndex) {
         setState(() {
           _selectedIndex = newIndex.round();
@@ -33,7 +33,7 @@ class _CategoriesState extends State<Categories> {
   }
 
   _scrollToItem(index) {
-    double position = index * 210.0;
+    double position = index * 260.0;
 
     _controller.animateTo(position,
         duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
@@ -93,7 +93,7 @@ class _CategoriesState extends State<Categories> {
 
   Widget _fruitShow() {
     return Container(
-      height: 300,
+      height: 400,
       margin: EdgeInsets.only(top: 20),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -101,56 +101,72 @@ class _CategoriesState extends State<Categories> {
         controller: _controller,
         padding: EdgeInsets.only(right: 40),
         itemBuilder: (BuildContext context, int index) {
-          return Container(
-            margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
-            width: 210,
-            decoration: BoxDecoration(
-              color: Color(int.parse(listItems[index].color)),
-              borderRadius: BorderRadius.circular(12.0),
-              boxShadow: [
-                BoxShadow(
-                    blurRadius: 10.0,
-                    offset: Offset(0, 30),
-                    color: Color(int.parse(listItems[index].color))
-                        .withOpacity(0.6),
-                    spreadRadius: -20)
-              ],
-            ),
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        listItems[index].name,
-                        style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      RichText(
-                        text: TextSpan(children: <TextSpan>[
-                          TextSpan(
-                              text: listItems[index].price + ".00",
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: " (" + listItems[index].kg + ")")
-                        ]),
-                      )
-                    ],
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                _selectedIndex = index;
+              });
+
+              _scrollToItem(_selectedIndex);
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
+              width: 260,
+              decoration: BoxDecoration(
+                color: Color(int.parse(listItems[index].color)),
+                borderRadius: BorderRadius.circular(12.0),
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 10.0,
+                      offset: Offset(0, 30),
+                      color: Color(int.parse(listItems[index].color))
+                          .withOpacity(0.6),
+                      spreadRadius: -20)
+                ],
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          listItems[index].name,
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                        RichText(
+                          text: TextSpan(children: <TextSpan>[
+                            TextSpan(
+                                text: listItems[index].price + ".00",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(text: " (" + listItems[index].kg + ")")
+                          ]),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                Hero(
-                  tag: listItems[index].name,
-                  child: Image(
-                    width: 150,
-                    height: 150,
-                    image:
-                        AssetImage("assets/fruits/" + listItems[index].image),
+                  Hero(
+                    tag: listItems[index].name,
+                    child: Image(
+                      width: 150,
+                      height: 150,
+                      image:
+                          AssetImage("assets/fruits/" + listItems[index].image),
+                    ),
                   ),
-                )
-              ],
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                    child: Text(
+                      listItems[index].description,
+                      style: TextStyle(color: Colors.white, fontSize: 12.0),
+                    ),
+                  )
+                ],
+              ),
             ),
           );
         },
