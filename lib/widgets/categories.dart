@@ -105,6 +105,7 @@ class _CategoriesState extends State<Categories> {
           return GestureDetector(
             onTap: () {
               setState(() {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProductScreen(item: listItems[index],)));
                 _selectedIndex = index;
               });
 
