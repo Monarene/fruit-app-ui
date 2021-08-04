@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruit_app_ui/widgets/categories.dart';
+import 'package:fruit_app_ui/widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -16,6 +16,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Categories(),
+          NewItems()
         ],
       ),
     );
