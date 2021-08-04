@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:fruit_app_ui/model/list_item.dart';
+import 'package:fruit_app_ui/screen/screens.dart';
 
 class Categories extends StatefulWidget {
   @override
@@ -185,9 +186,14 @@ class _CategoriesState extends State<Categories> {
                         borderRadius: BorderRadius.circular(15.0),
                         color: Colors.black.withOpacity(0.1),
                       ),
-                      child: Text(
-                        "Add to cart",
-                        style: TextStyle(color: Colors.white, fontSize: 12.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProductScreen(item: listItems[index],)));
+                        },
+                        child: Text(
+                          "Add to cart",
+                          style: TextStyle(color: Colors.white, fontSize: 12.0),
+                        ),
                       ),
                     ),
                   )
